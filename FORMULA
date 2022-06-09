@@ -1,9 +1,9 @@
 name: carbon-relay-ng
 os: Debian, Ubuntu
 os_family: Debian
-version: 0.1
+version: 0.1.0
 release: 1
-minimum_version: 2016.11
+minimum_version: 2019.2
 summary: carbon-relay-ng formula
 description: Formula to install and configure carbon-relay-ng
 top_level_dir: carbon-relay-ng

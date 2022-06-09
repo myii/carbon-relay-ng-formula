@@ -1,14 +1,14 @@
 .. _readme:
 
-TEMPLATE-formula
-================
+carbon-relay-ng-formula
+=======================
 
 |img_travis| |img_sr| |img_pc|
 
-.. |img_travis| image:: https://travis-ci.com/saltstack-formulas/TEMPLATE-formula.svg?branch=master
+.. |img_travis| image:: https://travis-ci.com/saltstack-formulas/carbon-relay-ng-formula.svg?branch=master
    :alt: Travis CI Build Status
    :scale: 100%
-   :target: https://travis-ci.com/saltstack-formulas/TEMPLATE-formula
+   :target: https://travis-ci.com/saltstack-formulas/carbon-relay-ng-formula
 .. |img_sr| image:: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
    :alt: Semantic Release
    :scale: 100%
@@ -42,6 +42,7 @@ If you need (non-default) configuration, please refer to:
 
 - `how to configure the formula with map.jinja <map.jinja.rst>`_
 - the ``pillar.example`` file
+- the `Special notes`_ section
 
 Contributing to this repo
 -------------------------
@@ -64,6 +65,10 @@ now ``pre-commit`` will run automatically on each ``git commit``. ::
   pre-commit installed at .git/hooks/pre-commit
   pre-commit installed at .git/hooks/commit-msg
 
+Special notes
+-------------
+
+None.
 
 Available states
 ----------------
@@ -93,7 +98,7 @@ Manages the configuration file using defined pillars.
 
 Manages the carbon-relay-ng service.
 
-this state will undo everything performed in the ``TEMPLATE`` meta-state in reverse order, i.e.
+this state will undo everything performed in the ``carbon-relay-ng`` meta-state in reverse order, i.e.
 stops the service,
 removes the configuration file and
 then uninstalls the package.
@@ -121,7 +126,7 @@ e.g. ``debian-9-2019-2-py3``.
 ``bin/kitchen converge``
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Creates the docker instance and runs the ``TEMPLATE`` main state, ready for testing.
+Creates the docker instance and runs the ``carbon-relay-ng`` main state, ready for testing.
 
 ``bin/kitchen verify``
 ^^^^^^^^^^^^^^^^^^^^^^
