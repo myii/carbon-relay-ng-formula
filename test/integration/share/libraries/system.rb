@@ -107,8 +107,6 @@ class SystemResource < Inspec.resource(1)
       'bullseye'
     when 'debian-10'
       'buster'
-    when 'debian-9'
-      'stretch'
     when 'almalinux-8'
       "AlmaLinux #{build_platform_release} (Arctic Sphynx)"
     when 'amazonlinux-2'

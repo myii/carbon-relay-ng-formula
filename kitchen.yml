@@ -8,6 +8,9 @@ driver:
   privileged: true
   run_command: /usr/lib/systemd/systemd
 
+# Using the commit title as a comment to guarantee change for new commit/push:
+# ci: test for upstream Salt regressions in '`'master'`' instances (2022-W51b)
+
 provisioner:
   name: salt_solo
   log_level: debug
@@ -21,53 +24,6 @@ provisioner:
     - test/salt/pillar
 
 platforms:
-  ## SALT `tiamat`
-  - name: debian-11-tiamat-py3
-    driver:
-      image: saltimages/salt-tiamat-py3:debian-11
-      run_command: /lib/systemd/systemd
-  - name: debian-10-tiamat-py3
-    driver:
-      image: saltimages/salt-tiamat-py3:debian-10
-      run_command: /lib/systemd/systemd
-  - name: debian-9-tiamat-py3
-    driver:
-      image: saltimages/salt-tiamat-py3:debian-9
-      run_command: /lib/systemd/systemd
-  - name: ubuntu-2204-tiamat-py3
-    driver:
-      image: saltimages/salt-tiamat-py3:ubuntu-22.04
-      run_command: /lib/systemd/systemd
-  - name: ubuntu-2004-tiamat-py3
-    driver:
-      image: saltimages/salt-tiamat-py3:ubuntu-20.04
-      run_command: /lib/systemd/systemd
-  - name: ubuntu-1804-tiamat-py3
-    driver:
-      image: saltimages/salt-tiamat-py3:ubuntu-18.04
-      run_command: /lib/systemd/systemd
-  - name: centos-stream8-tiamat-py3
-    driver:
-      image: saltimages/salt-tiamat-py3:centos-stream8
-  - name: centos-7-tiamat-py3
-    driver:
-      image: saltimages/salt-tiamat-py3:centos-7
-  - name: amazonlinux-2-tiamat-py3
-    driver:
-      image: saltimages/salt-tiamat-py3:amazonlinux-2
-  - name: oraclelinux-8-tiamat-py3
-    driver:
-      image: saltimages/salt-tiamat-py3:oraclelinux-8
-  - name: oraclelinux-7-tiamat-py3
-    driver:
-      image: saltimages/salt-tiamat-py3:oraclelinux-7
-  - name: almalinux-8-tiamat-py3
-    driver:
-      image: saltimages/salt-tiamat-py3:almalinux-8
-  - name: rockylinux-8-tiamat-py3
-    driver:
-      image: saltimages/salt-tiamat-py3:rockylinux-8
-
   ## SALT `master`
   - name: debian-11-master-py3
     driver:
@@ -76,10 +32,6 @@ platforms:
   - name: debian-10-master-py3
     driver:
       image: saltimages/salt-master-py3:debian-10
-      run_command: /lib/systemd/systemd
-  - name: debian-9-master-py3
-    driver:
-      image: saltimages/salt-master-py3:debian-9
       run_command: /lib/systemd/systemd
   - name: ubuntu-2204-master-py3
     driver:
@@ -102,13 +54,10 @@ platforms:
   - name: fedora-36-master-py3
     driver:
       image: saltimages/salt-master-py3:fedora-36
-  - name: fedora-35-master-py3
+  - name: opensuse-leap-154-master-py3
     driver:
-      image: saltimages/salt-master-py3:fedora-35
-  - name: opensuse-leap-153-master-py3
-    driver:
-      image: saltimages/salt-master-py3:opensuse-leap-15.3
-    # Workaround to avoid intermittent failures on `opensuse-leap-15.3`:
+      image: saltimages/salt-master-py3:opensuse-leap-15.4
+    # Workaround to avoid intermittent failures on `opensuse-leap-15.4`:
     # => SCP did not finish successfully (255):  (Net::SCP::Error)
     transport:
       max_ssh_sessions: 1
@@ -145,74 +94,183 @@ platforms:
     driver:
       image: saltimages/salt-master-py3:rockylinux-8
 
-  ## SALT `3004.1`
-  - name: debian-11-3004-1-py3
+  ## SALT `nghtly`
+  - name: debian-11-nghtly-py3
     driver:
-      image: saltimages/salt-3004.1-py3:debian-11
+      image: saltimages/salt-nghtly-py3:debian-11
       run_command: /lib/systemd/systemd
-  - name: debian-10-3004-1-py3
+  - name: debian-10-nghtly-py3
     driver:
-      image: saltimages/salt-3004.1-py3:debian-10
+      image: saltimages/salt-nghtly-py3:debian-10
       run_command: /lib/systemd/systemd
-  - name: debian-9-3004-1-py3
+  - name: ubuntu-2204-nghtly-py3
     driver:
-      image: saltimages/salt-3004.1-py3:debian-9
+      image: saltimages/salt-nghtly-py3:ubuntu-22.04
       run_command: /lib/systemd/systemd
-  - name: ubuntu-2204-3004-1-py3
+  - name: ubuntu-2004-nghtly-py3
     driver:
-      image: saltimages/salt-3004.1-py3:ubuntu-22.04
+      image: saltimages/salt-nghtly-py3:ubuntu-20.04
       run_command: /lib/systemd/systemd
-  - name: ubuntu-2004-3004-1-py3
+  - name: ubuntu-1804-nghtly-py3
     driver:
-      image: saltimages/salt-3004.1-py3:ubuntu-20.04
+      image: saltimages/salt-nghtly-py3:ubuntu-18.04
       run_command: /lib/systemd/systemd
-  - name: ubuntu-1804-3004-1-py3
+  - name: centos-stream9-nghtly-py3
     driver:
-      image: saltimages/salt-3004.1-py3:ubuntu-18.04
+      image: saltimages/salt-nghtly-py3:centos-stream9
+  - name: centos-stream8-nghtly-py3
+    driver:
+      image: saltimages/salt-nghtly-py3:centos-stream8
+  - name: centos-7-nghtly-py3
+    driver:
+      image: saltimages/salt-nghtly-py3:centos-7
+  - name: amazonlinux-2-nghtly-py3
+    driver:
+      image: saltimages/salt-nghtly-py3:amazonlinux-2
+  - name: oraclelinux-9-nghtly-py3
+    driver:
+      image: saltimages/salt-nghtly-py3:oraclelinux-9
+  - name: oraclelinux-8-nghtly-py3
+    driver:
+      image: saltimages/salt-nghtly-py3:oraclelinux-8
+  - name: oraclelinux-7-nghtly-py3
+    driver:
+      image: saltimages/salt-nghtly-py3:oraclelinux-7
+  - name: almalinux-9-nghtly-py3
+    driver:
+      image: saltimages/salt-nghtly-py3:almalinux-9
+  - name: almalinux-8-nghtly-py3
+    driver:
+      image: saltimages/salt-nghtly-py3:almalinux-8
+  - name: rockylinux-9-nghtly-py3
+    driver:
+      image: saltimages/salt-nghtly-py3:rockylinux-9
+  - name: rockylinux-8-nghtly-py3
+    driver:
+      image: saltimages/salt-nghtly-py3:rockylinux-8
+
+  ## SALT `3005.1`
+  - name: debian-11-3005-1-py3
+    driver:
+      image: saltimages/salt-3005.1-py3:debian-11
       run_command: /lib/systemd/systemd
-  - name: centos-stream8-3004-1-py3
+  - name: debian-10-3005-1-py3
     driver:
-      image: saltimages/salt-3004.1-py3:centos-stream8
-  - name: centos-7-3004-1-py3
+      image: saltimages/salt-3005.1-py3:debian-10
+      run_command: /lib/systemd/systemd
+  - name: ubuntu-2204-3005-1-py3
     driver:
-      image: saltimages/salt-3004.1-py3:centos-7
-  - name: fedora-36-3004-1-py3
+      image: saltimages/salt-3005.1-py3:ubuntu-22.04
+      run_command: /lib/systemd/systemd
+  - name: ubuntu-2004-3005-1-py3
     driver:
-      image: saltimages/salt-3004.1-py3:fedora-36
-  - name: fedora-35-3004-1-py3
+      image: saltimages/salt-3005.1-py3:ubuntu-20.04
+      run_command: /lib/systemd/systemd
+  - name: ubuntu-1804-3005-1-py3
     driver:
-      image: saltimages/salt-3004.1-py3:fedora-35
-  - name: amazonlinux-2-3004-1-py3
+      image: saltimages/salt-3005.1-py3:ubuntu-18.04
+      run_command: /lib/systemd/systemd
+  - name: centos-stream9-3005-1-py3
     driver:
-      image: saltimages/salt-3004.1-py3:amazonlinux-2
-  - name: oraclelinux-8-3004-1-py3
+      image: saltimages/salt-3005.1-py3:centos-stream9
+  - name: centos-stream8-3005-1-py3
     driver:
-      image: saltimages/salt-3004.1-py3:oraclelinux-8
-  - name: oraclelinux-7-3004-1-py3
+      image: saltimages/salt-3005.1-py3:centos-stream8
+  - name: centos-7-3005-1-py3
     driver:
-      image: saltimages/salt-3004.1-py3:oraclelinux-7
-  - name: arch-base-latest-3004-1-py3
+      image: saltimages/salt-3005.1-py3:centos-7
+  - name: fedora-38-3005-1-py3
     driver:
-      image: saltimages/salt-3004.1-py3:arch-base-latest
-  - name: gentoo-stage3-latest-3004-1-py3
+      image: saltimages/salt-3005.1-py3:fedora-38
+  - name: fedora-37-3005-1-py3
     driver:
-      image: saltimages/salt-3004.1-py3:gentoo-stage3-latest
+      image: saltimages/salt-3005.1-py3:fedora-37
+  - name: fedora-36-3005-1-py3
+    driver:
+      image: saltimages/salt-3005.1-py3:fedora-36
+  - name: amazonlinux-2-3005-1-py3
+    driver:
+      image: saltimages/salt-3005.1-py3:amazonlinux-2
+  - name: oraclelinux-9-3005-1-py3
+    driver:
+      image: saltimages/salt-3005.1-py3:oraclelinux-9
+  - name: oraclelinux-8-3005-1-py3
+    driver:
+      image: saltimages/salt-3005.1-py3:oraclelinux-8
+  - name: oraclelinux-7-3005-1-py3
+    driver:
+      image: saltimages/salt-3005.1-py3:oraclelinux-7
+  - name: arch-base-latest-3005-1-py3
+    driver:
+      image: saltimages/salt-3005.1-py3:arch-base-latest
+  - name: gentoo-stage3-latest-3005-1-py3
+    driver:
+      image: saltimages/salt-3005.1-py3:gentoo-stage3-latest
       run_command: /sbin/init
-  - name: gentoo-stage3-systemd-3004-1-py3
+  - name: gentoo-stage3-systemd-3005-1-py3
     driver:
-      image: saltimages/salt-3004.1-py3:gentoo-stage3-systemd
-  - name: almalinux-8-3004-1-py3
+      image: saltimages/salt-3005.1-py3:gentoo-stage3-systemd
+  - name: almalinux-9-3005-1-py3
     driver:
-      image: saltimages/salt-3004.1-py3:almalinux-8
-  - name: rockylinux-8-3004-1-py3
+      image: saltimages/salt-3005.1-py3:almalinux-9
+  - name: almalinux-8-3005-1-py3
     driver:
-      image: saltimages/salt-3004.1-py3:rockylinux-8
+      image: saltimages/salt-3005.1-py3:almalinux-8
+  - name: rockylinux-9-3005-1-py3
+    driver:
+      image: saltimages/salt-3005.1-py3:rockylinux-9
+  - name: rockylinux-8-3005-1-py3
+    driver:
+      image: saltimages/salt-3005.1-py3:rockylinux-8
+
+  ## SALT `3004.2`
+  - name: debian-11-3004-2-py3
+    driver:
+      image: saltimages/salt-3004.2-py3:debian-11
+      run_command: /lib/systemd/systemd
+  - name: debian-10-3004-2-py3
+    driver:
+      image: saltimages/salt-3004.2-py3:debian-10
+      run_command: /lib/systemd/systemd
+  - name: ubuntu-2204-3004-2-py3
+    driver:
+      image: saltimages/salt-3004.2-py3:ubuntu-22.04
+      run_command: /lib/systemd/systemd
+  - name: ubuntu-2004-3004-2-py3
+    driver:
+      image: saltimages/salt-3004.2-py3:ubuntu-20.04
+      run_command: /lib/systemd/systemd
+  - name: ubuntu-1804-3004-2-py3
+    driver:
+      image: saltimages/salt-3004.2-py3:ubuntu-18.04
+      run_command: /lib/systemd/systemd
+  - name: centos-stream8-3004-2-py3
+    driver:
+      image: saltimages/salt-3004.2-py3:centos-stream8
+  - name: centos-7-3004-2-py3
+    driver:
+      image: saltimages/salt-3004.2-py3:centos-7
+  - name: amazonlinux-2-3004-2-py3
+    driver:
+      image: saltimages/salt-3004.2-py3:amazonlinux-2
+  - name: oraclelinux-8-3004-2-py3
+    driver:
+      image: saltimages/salt-3004.2-py3:oraclelinux-8
+  - name: oraclelinux-7-3004-2-py3
+    driver:
+      image: saltimages/salt-3004.2-py3:oraclelinux-7
+  - name: almalinux-8-3004-2-py3
+    driver:
+      image: saltimages/salt-3004.2-py3:almalinux-8
+  - name: rockylinux-8-3004-2-py3
+    driver:
+      image: saltimages/salt-3004.2-py3:rockylinux-8
 
   ## SALT `3004.0`
-  - name: opensuse-leap-153-3004-0-py3
+  - name: opensuse-leap-154-3004-0-py3
     driver:
-      image: saltimages/salt-3004.0-py3:opensuse-leap-15.3
-    # Workaround to avoid intermittent failures on `opensuse-leap-15.3`:
+      image: saltimages/salt-3004.0-py3:opensuse-leap-15.4
+    # Workaround to avoid intermittent failures on `opensuse-leap-15.4`:
     # => SCP did not finish successfully (255):  (Net::SCP::Error)
     transport:
       max_ssh_sessions: 1
@@ -223,42 +281,6 @@ platforms:
     # => SCP did not finish successfully (255):  (Net::SCP::Error)
     transport:
       max_ssh_sessions: 1
-
-  ## SALT `3003.4`
-  - name: debian-10-3003-4-py3
-    driver:
-      image: saltimages/salt-3003.4-py3:debian-10
-      run_command: /lib/systemd/systemd
-  - name: debian-9-3003-4-py3
-    driver:
-      image: saltimages/salt-3003.4-py3:debian-9
-      run_command: /lib/systemd/systemd
-  - name: ubuntu-2004-3003-4-py3
-    driver:
-      image: saltimages/salt-3003.4-py3:ubuntu-20.04
-      run_command: /lib/systemd/systemd
-  - name: ubuntu-1804-3003-4-py3
-    driver:
-      image: saltimages/salt-3003.4-py3:ubuntu-18.04
-      run_command: /lib/systemd/systemd
-  - name: centos-stream8-3003-4-py3
-    driver:
-      image: saltimages/salt-3003.4-py3:centos-stream8
-  - name: centos-7-3003-4-py3
-    driver:
-      image: saltimages/salt-3003.4-py3:centos-7
-  - name: amazonlinux-2-3003-4-py3
-    driver:
-      image: saltimages/salt-3003.4-py3:amazonlinux-2
-  - name: oraclelinux-8-3003-4-py3
-    driver:
-      image: saltimages/salt-3003.4-py3:oraclelinux-8
-  - name: oraclelinux-7-3003-4-py3
-    driver:
-      image: saltimages/salt-3003.4-py3:oraclelinux-7
-  - name: almalinux-8-3003-4-py3
-    driver:
-      image: saltimages/salt-3003.4-py3:almalinux-8
 
 verifier:
   # https://www.inspec.io/
